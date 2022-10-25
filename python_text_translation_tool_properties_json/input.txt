@@ -1,0 +1,17 @@
+Declined
+Success
+Pending
+Funds
+Funded By
+Funded On
+Status
+Amount
+Notify user
+Click on the icon to preview the email
+Email preview
+Awardee has been added successfully.
+Error while giving award.
+Save
+Cancel
+Error while getting total amount used in this award category.
+Error while getting email logo
