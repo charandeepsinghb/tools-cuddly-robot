@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>text translate copy</title>
+</head>
+<style>
+    .upInner {
+        width: 50%;
+        height: 40vh;
+    }
+    .bottom {
+        height: 40vh;
+    }
+    .rootUp {
+        display: flex;
+    }
+    * {
+        /* border: 0.5px solid blue; */
+    }
+    textarea {
+        width: 100%;
+        height: 100%;
+        resize: none;
+    }
+</style>
+<body>
+    <div class="rootUp">
+        <textarea class="upInner" id="engTA" oninput="convert()"></textarea>
+        <textarea class="upInner" id="otherL" oninput="convert()"></textarea>
+    </div>
+    <div class="rootUp">
+        <textarea class="bottom" id="res"></textarea>
+    </div>
+    <br>
+    <div>
+        <label>
+            Replace ', "
+            <input id="replace" type="checkbox" checked onchange="convert()">
+        </label>
+    </div>
+    <div style="margin-top: 4px">
+        <input type="radio" id="xmlRd" name="syntax_type" value="xml" checked onchange="convert()">
+        <label for="xml">XML</label><br>
+        <input type="radio" id="jsonRd" name="syntax_type" value="json" onchange="convert()">
+        <label for="json">Json</label><br>
+    </div>
+    <script>
+        const engTA = document.getElementById("engTA");
+        const otherLTA = document.getElementById("otherL");
+        const resTA = document.getElementById("res");
+
+        function convert() {
+            let switchVal = document.getElementById("replace").checked;
+            let xmlJsonVal = document.getElementById("xmlRd").checked;
+            resTA.value = '';
+            let engLines = engTA.value.split('\n');
+            let otherLines = otherLTA.value.split('\n');
+            engLines.forEach((element, index) => {
+                if (!element == '') {
+                    if (switchVal) {
+                        let firstelem = element.replaceAll('"', '&quot;').replaceAll("'", "&apos;");
+                        let secondelem = otherLines[index] ? otherLines[index].replaceAll('"', '&quot;').replaceAll("'", "&apos;") : "";
+                        if (xmlJsonVal) {
+                            resTA.value += firstelem  + '=' 
+                                + secondelem + '\n';
+                        } else {
+                            resTA.value += '"' + firstelem  + '": "' 
+                                + secondelem + '"' + ',\n';
+                        }
+                    } else {
+                        if (xmlJsonVal) {
+                            resTA.value += firstelem  + '=' 
+                                + secondelem + '\n';
+                        } else {
+                            resTA.value += '"' + element  + '": "' 
+                                + (otherLines[index] ? otherLines[index] : "") + '"' + ',\n';
+                        }
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html>
