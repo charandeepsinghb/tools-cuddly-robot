@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -59,7 +60,8 @@
             engLines.forEach((element, index) => {
                 if (!element == '') {
                     if (switchVal) {
-                        let firstelem = element.replaceAll('"', '&quot;').replaceAll("'", "&apos;");
+                        // let firstelem = element.replaceAll('"', '&quot;').replaceAll("'", "&apos;");
+                        let firstelem = element;
                         let secondelem = otherLines[index] ? otherLines[index].replaceAll('"', '&quot;').replaceAll("'", "&apos;") : "";
                         if (xmlJsonVal) {
                             resTA.value += firstelem  + '=' 
@@ -70,8 +72,8 @@
                         }
                     } else {
                         if (xmlJsonVal) {
-                            resTA.value += firstelem  + '=' 
-                                + secondelem + '\n';
+                            resTA.value += element  + '=' 
+                                + (otherLines[index] ? otherLines[index] : "") + '\n';
                         } else {
                             resTA.value += '"' + element  + '": "' 
                                 + (otherLines[index] ? otherLines[index] : "") + '"' + ',\n';
