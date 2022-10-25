@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Normalization Visualization</title>
+</head>
+<style>
+    .rangeInputs {
+        width: 500px;
+        margin: 20px 10px;
+    }
+    .rangeDivs {
+        margin: 0 20px;
+        display: flex;
+        align-items: baseline;
+        width: fit-content;
+    }
+    .smallInput {
+        width: 50px;
+    }
+    .finalValDivs {
+        width: 485px;
+        margin-left: 13px;
+    }
+    .currVal {
+        margin-top: 12px;
+    }
+</style>
+<body>
+    <div style="display: flex;">
+        <div>
+            <div class="rangeDivs">
+                <div>
+                    <lable>A</lable>
+                    <input value="0" type="number" class="smallInput" id="ai">
+                    <div class="currVal">X:</div>
+                </div>
+                <div>
+                    <input class="rangeInputs" id="range1" type="range" min="0" max="10">
+                    <div class="finalValDivs"><span id="range1val"></span></div>
+                </div>
+                <div>
+                    <lable>B</lable>
+                    <input value="10" type="number" class="smallInput" id="bi">
+                </div>
+            </div>
+            <div class="rangeDivs">
+                <div>
+                    <lable>C</lable>
+                    <input value="0" type="number" class="smallInput" id="ci">
+                    <div class="currVal">Y:</div>
+                </div>
+                <div>
+                    <input class="rangeInputs" id="range2" type="range" min="0" max="10" disabled>
+                    <div class="finalValDivs"><span id="range2val"></span></div>
+                </div>
+                <div>
+                    <lable>D</lable>
+                    <input value="10" type="number" class="smallInput" id="di">
+                </div>
+            </div>
+        </div>
+        <div>
+            
+        </div>
+    </div>
+    <script>
+        const ai = document.getElementById('ai');
+        const bi = document.getElementById('bi');
+        const ci = document.getElementById('ci');
+        const di = document.getElementById('di');
+        
+        const range1 = document.getElementById('range1');
+        const range2 = document.getElementById('range2');
+
+        const range1val = document.getElementById('range1val');
+        const range2val = document.getElementById('range2val');
+
+        let range1Tval = 0;
+        let range2Tval = 5;
+        let calcY = 0;
+
+        rerender();
+        document.addEventListener("change", function(){
+            rerender();
+        });
+
+        // Calculate y normalized value
+        function calculateY(x, a, b, c, d) {
+            let res = (Number(c) + ((Number(x) - Number(a)) / (Number(b) - Number(a)) * (Number(d) - Number(c))));
+            return res;
+        }
+
+        // Calculate position for slider text
+        function calculateCurrPos(max, cur) {
+            // return Number(cur) / Number(max) * 484 + 14;
+            return Number(cur) / Number(max) * 100;
+        }
+
+        // Slider position manipulations
+        function setCurPos() {
+            range1val.innerHTML = range1Tval;
+            range2val.innerHTML = range2Tval;
+            range1val.style.marginLeft = calculateCurrPos(range1.getAttribute('max'), range1.value) + "%";
+            range2val.style.marginLeft = calculateCurrPos(range2.getAttribute('max'), range2.value) + "%";
+        }
+
+        // Max values for range inputs
+        function setMaxes() {
+            range1.setAttribute('max', Math.abs(ai.value - bi.value));
+            range2.setAttribute('max', Math.abs(ci.value - di.value));
+        }
+
+        // Range from input type range of 0 to max -> range in start and end
+        function getRangeValue(range, start, end) {
+            return Number(start) > Number(end) ? Number(start) - Number(range) : Number(start) + Number(range);
+        }
+
+        // Range from start to end -> range of input type range
+        function setRangeValue(range, start, end) {
+            return Number(start) > Number(end) ? Number(start) - Number(range) : Number(range) + Number(start);
+        }
+
+        // Return fixed without decimal and with decimal
+        function myFixedFunc(num) {
+            let fix = Number(num).toFixed(2);
+            if (fix.includes("00")) {
+                return fix.substring(0, fix.indexOf('.'));
+            } else {
+                return fix;
+            }
+        }
+
+        function rerender() {
+            setMaxes();
+            range1Tval = getRangeValue(range1.value, ai.value, bi.value);
+            calcY = calculateY(range1Tval, ai.value, bi.value, ci.value, di.value);
+            range2Tval = myFixedFunc(calcY);
+            range2.value = setRangeValue(calcY, ci.value, di.value);
+            setCurPos();
+        }
+    </script>
+</body>
+</html>
