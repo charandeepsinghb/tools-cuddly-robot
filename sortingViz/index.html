@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Test</title>
+    <style type="text/css">
+        #holder {
+            margin: 50px;
+            display: flex;
+            align-items: flex-end;
+        }
+        #holder > div {
+            background-color: brown;
+            margin-left: 1px;
+            /* border-left: 1px solid black;
+            border-top: 1px solid black;
+            border-bottom: 1px solid black; */
+        }
+    </style>
+</head>
+<body>
+
+<div class="root">
+    <input id="sizeIn" type="number" placeholder="Size" min="2" value="50" max="200">
+    <button onclick="genEl();">Generate</button>
+
+    <div id="holder">
+
+    </div>
+</div>
+
+<script type="text/javascript">
+    function genRandAr(size) {
+        return [...Array(size)].map(e => Math.floor(Math.random() * 400 + 10));
+    }
+
+    function genElByH(hi, wi) {
+        const el = document.createElement('div');
+        el.style.height=hi + "px";
+        el.style.width=wi + "px";
+        el.setAttribute('id', "d" + hi);
+        return el;
+    }
+    
+    function genEl() {
+        const holder = document.getElementById("holder");
+        holder.innerHTML = "";
+
+
+        const sizeIn = document.getElementById("sizeIn");
+        if (Number(sizeIn.value) > 200) {
+            return;
+        }
+        const elwid = window.innerWidth / sizeIn.value;
+        let randArr = genRandAr(Number(sizeIn.value));
+
+        randArr.forEach(element => {
+            holder.appendChild(genElByH(element, elwid));
+        });
+    }
+
+</script>
+
+</body>
+</html>
