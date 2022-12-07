@@ -10,3 +10,6 @@ Create venv using venv (python module) install translations from pip after activ
 Insert text that needs to be translated in the format\
 text.properties.name=hello world => for properties files translations (used in spring project)\
 hello world => for json files (used in angular i18n files and other frontend i18n standard files)
+\
+After adding text in this format into input.txt file start script in venv using python script.py 
+going through steps to complete translations translations will be added to the result.txt file
