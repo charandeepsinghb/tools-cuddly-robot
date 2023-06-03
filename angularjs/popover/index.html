@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- jqyury -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- boot -->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+    
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <!-- ang -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.3/angular.min.js" integrity="sha512-KZmyTq3PLx9EZl0RHShHQuXtrvdJ+m35tuOiwlcZfs/rE7NZv29ygNA8SFCkMXTnYZQK2OX0Gm2qKGfvWEtRXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+<body>
+    <script>
+        var app = angular.module('myApp', []);
+        app.controller('myCtrl', function($scope) {
+            $scope.firstName = "John";
+            $scope.lastName = "Doe";
+
+            $scope.data = [
+                {
+                    shiftTime: "12:58 am-04:59 am",
+                    shiftStatus: "AP",
+                    shiftOverTime: "0"
+                },
+                {
+                    shiftTime: "04:58 am-08:59 am",
+                    shiftStatus: "op",
+                    shiftOverTime: "1"
+                },
+                {
+                    shiftTime: "09:58 am-01:59 pm",
+                    shiftStatus: "AP",
+                    shiftOverTime: "1"
+                }
+            ];
+
+            $scope.poptext = "abcd";
+
+            $scope.something = function(dn) {
+                if (dn.shiftStatus == 'AP') {
+                    // return "<span class='icon-thumbs-up'>" + dn.shiftTime + " AP</span>";
+                    $scope.poptext = "<span class='icon-thumbs-up'>" + dn.shiftTime + " AP</span>";
+                } else {
+                    // return "<span class='icon-thumbs-up'>" + dn.shiftTime + " OT</span>";
+                    $scope.poptext = "<span class='icon-thumbs-up'>" + dn.shiftTime + " OT</span>";
+                }
+            }
+        });
+
+        jQuery(document).ready(function() {
+            $('body').popover({
+                selector : '[data-popover]',
+                trigger: 'hover',
+                placement: 'top',
+                // delay: 0
+            });
+            $('.nounderline').popover({
+                // selector : '[data-toggle]',
+                placement: 'bottom',
+                // delay: {"show": 100, "hide": 500},
+                trigger: 'hover'
+            });
+        });
+
+    </script>
+    <!-- Hello world -->
+    
+    <!-- angular div -->
+    <div ng-app="myApp" ng-controller="myCtrl" class="athing">
+        <span ng-mouseover="something(data[0])" class="btn btn-default popovers nounderline"
+              data-toggle="popover wall"
+              data-popover='true'
+              data-html="true"
+              data-content='{{poptext}}'
+              data-delay='{"show":1000, "hide":2000}'>
+            thingy
+        </span>
+    </div>
+
+    <style>
+        .athing {
+            margin: 200px;
+        }
+    </style>
+
+</body>
+</html>
