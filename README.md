@@ -1,2 +1,2 @@
 # tools-cuddly-robot
-Helpful projects or tools that can be used
+Open Helpful projects or tools that can be used
