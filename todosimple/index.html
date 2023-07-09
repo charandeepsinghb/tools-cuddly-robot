@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Testing</title>
+</head>
+<body>
+  <div class="root">
+    <div class="add">
+      <input id="addTodo" onkeyup="createTodo(event)" type="text" />
+    </div>
+    <div id="todos">
+    </div>
+    <template id="todoTemplate">
+      <div class="todoItem">
+        <div class="todoName itemMar" id="todo"></div>
+        <div class="utils">
+          <div class="cross itemMar" onclick="crossFromTodos(event.target)">c</div>
+          <div class="cross itemMar" onclick="removeFromTodos(event.target)">x</div>
+        </div>
+      </div>
+    </template>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

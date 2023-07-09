@@ -1,0 +1,57 @@
+:root {
+  --border-radius: 5px;
+  --font-size: 2rem;
+}
+
+.root {
+  background-color: #eeeeee;
+  max-width: 50%;
+  margin: auto;
+  font-size: var(--font-size);
+  border-radius: var(--border-radius);
+  font-family: monospace;
+}
+
+@media only screen and (max-width: 1000px) {
+  .root {
+    max-width: 100%;
+  }
+}
+
+input {
+  width: 100%;
+  font-size: var(--font-size);
+  padding: 0;
+  border: 0;
+  font-family: monospace;
+  border-radius: var(--border-radius);
+  display: block;
+}
+
+.add {
+  border: 1px solid gray;
+  border-radius: var(--border-radius);
+}
+
+.todoItem {
+  display: flex;
+  justify-content: space-between;
+}
+
+.cross:hover {
+  cursor: pointer;
+}
+
+.itemMar {
+  margin: auto 5px;
+  overflow-wrap: anywhere;
+}
+.utils {
+  display: flex;
+}
+.crossText {
+  text-decoration: line-through;
+}
+.todoItem:nth-child(even) {
+  background-color: #f0ffee;
+}
