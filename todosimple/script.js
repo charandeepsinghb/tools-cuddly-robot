@@ -1,3 +1,13 @@
+// console output div
+// console.log = (function (old_function, div_log) { 
+//     return function (text) {
+//         old_function(text);
+//         div_log.textContent += text;
+//     };
+// } (console.log.bind(console), document.getElementById("debugDiv")));
+
+
+
 const TODOS_LOCAL_KEY = 'todos';
 const todosDiv = document.getElementById("todos");
 const addTodoInput = document.getElementById("addTodo");
@@ -16,7 +26,7 @@ function getTodos() {
   return todos;
 }
 
-function addTodo(todo) {
+function saveTodo(todo) {
   let todos = getTodos();
   todos.push(todo);
 
@@ -44,16 +54,21 @@ function addToList(todo) {
 
   const todoTemplateClone = todoTemplate.content.cloneNode(true);
   todoTemplateClone.children[0].removeAttribute('id');
+  if (todo.comp) {
+    todoTemplateClone.children[0].getElementsByClassName('todoName')[0].classList.add('crossText');
+  } else {
+    todoTemplateClone.children[0].getElementsByClassName('todoName')[0].classList.remove('crossText');
+  }
 
   todosDiv.appendChild(todoTemplateClone);
 }
 
 function createTodo(event) {
-  if (event.code === 'Enter') {
+  if (event.code === 'Enter' || event.keyCode === 13) {
     let todoName = event.target.value;
     const todo = { "val": todoName };
 
-    addTodo(todo);
+    saveTodo(todo);
     addToList(todo);
   }
 }
@@ -79,7 +94,7 @@ function removeFromTodos(element) {
   todos.forEach((item) => {
     if (item.val !== nameOfTodo) {
       addToList(item);
-      addTodo(item);
+      saveTodo(item);
     }
   });
 }
@@ -93,11 +108,18 @@ function crossFromTodos(element) {
 
   todos.forEach((item) => {
     if (item.val === nameOfTodo) {
-      addToListAndCut(item);
+      // console.log(item.comp);
+      if (item.comp) {
+        item.comp = false;
+      } else {
+        item.comp = true;
+      }
+      // console.log(item.comp);
+      addToList(item);
     } else {
       addToList(item);
     }
-    addTodo(item);
+    saveTodo(item);
   });
 }
 
