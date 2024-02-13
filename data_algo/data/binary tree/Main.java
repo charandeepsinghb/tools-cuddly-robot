@@ -10,39 +10,39 @@ class BinaryTree {
         nodes.add(root);
     }
 
-    public void setLeft(int at, int node) {
-        System.out.println(at * 2 + 1 + " " + node);
-        nodes.add(at * 2 + 1, node);
+    public void setLeft(int parentAt, int nodeValue) {
+        System.out.println(parentAt * 2 + 1 + " " + nodeValue);
+        nodes.add(parentAt * 2 + 1, nodeValue);
     }
 
-    public void setRight(int at, int node) {
-        System.out.println(at * 2 + 2 + " " + node);
-        nodes.add(at * 2 + 2, node);
+    public void setRight(int parentAt, int nodeValue) {
+        System.out.println(parentAt * 2 + 2 + " " + nodeValue);
+        nodes.add(parentAt * 2 + 2, nodeValue);
     }
 
-    public Integer getLeft(int at) {
-        return nodes.get(at * 2 + 1);
+    public Integer getLeft(int parentAt) {
+        return nodes.get(parentAt * 2 + 1);
     }
     
-    public Integer getRight(int at) {
-        return nodes.get(at * 2 + 2);
+    public Integer getRight(int parentAt) {
+        return nodes.get(parentAt * 2 + 2);
     }
 
-    public Integer getRoot(int at) {
-        return nodes.get(at);
+    public Integer getRoot(int parentAt) {
+        return nodes.get(parentAt);
     }
 
-    public void inOrderPrint(int at) {
-        if (at > nodes.size() - 1) {
+    public void inOrderPrint(int parentAt) {
+        if (parentAt > nodes.size() - 1) {
             return;
         }
-        if (at == 0) {
+        if (parentAt == 0) {
             System.out.print("Inorder: ");
         }
 
-        inOrderPrint(at * 2 + 1);
-        System.out.print(nodes.get(at) + " ");
-        inOrderPrint(at * 2 + 2);
+        inOrderPrint(parentAt * 2 + 1);
+        System.out.print(nodes.get(parentAt) + " ");
+        inOrderPrint(parentAt * 2 + 2);
     }
 }
 
