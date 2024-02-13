@@ -32,17 +32,17 @@ class BinaryTree {
         return nodes.get(parentAt);
     }
 
-    public void inOrderPrint(int parentAt) {
-        if (parentAt > nodes.size() - 1) {
+    public void inOrderPrint(int at) {
+        if (at > nodes.size() - 1) {
             return;
         }
-        if (parentAt == 0) {
+        if (at == 0) {
             System.out.print("Inorder: ");
         }
 
-        inOrderPrint(parentAt * 2 + 1);
-        System.out.print(nodes.get(parentAt) + " ");
-        inOrderPrint(parentAt * 2 + 2);
+        inOrderPrint(at * 2 + 1);
+        System.out.print(nodes.get(at) + " ");
+        inOrderPrint(at * 2 + 2);
     }
 }
 
