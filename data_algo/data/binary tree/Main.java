@@ -60,5 +60,17 @@ class Main {
         binaryTree.inOrderPrint(0);
 
         // Run with javac Main.java && java Main
+        /**
+        
+        Output:
+        
+        0 1
+        1 2
+        2 3
+        3 4
+        4 5
+        Inorder: 4 2 5 1 3
+        
+        */
     }    
 }
