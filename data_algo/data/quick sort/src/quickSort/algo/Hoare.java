@@ -20,11 +20,12 @@ public class Hoare {
         int j = hi;
 
         while (true) {
-            Util.devLog("Arr (dev): " + Arrays.asList(arr) + ", i: " + i + ", j: " + j + ", p: " + p);
             do {
+                Util.devLog("Arr (dev): " + Arrays.asList(arr) + ", i: " + i + ", j: " + j + ", p: " + p);
                 i = i + 1;
             } while (arr[i] < p);
             do {
+                Util.devLog("Arr (dev): " + Arrays.asList(arr) + ", i: " + i + ", j: " + j + ", p: " + p);
                 j = j - 1;
             } while (arr[j] > p);
             if (i >= j) {
