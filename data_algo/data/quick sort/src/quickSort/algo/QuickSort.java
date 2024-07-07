@@ -10,7 +10,7 @@ public class QuickSort {
     public static void quickSort(Integer[] arr) {
 
         // Main calling function
-        Lomuto.quickSort(arr, 0, arr.length - 1);
-        // Hoare.quickSort(arr, 0, arr.length - 1);
+        // Lomuto.quickSort(arr, 0, arr.length - 1);
+        Hoare.sort(arr, 0, arr.length - 1);
     }
 }

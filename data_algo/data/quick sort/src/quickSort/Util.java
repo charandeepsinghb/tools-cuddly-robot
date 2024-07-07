@@ -8,7 +8,7 @@ public class Util {
      * @param str Print message
      */
     public static void devLog(String str) {
-        // System.out.println(str);
+        System.out.println(str);
     }
 
     /**

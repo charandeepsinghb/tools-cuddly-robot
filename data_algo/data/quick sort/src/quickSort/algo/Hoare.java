@@ -1,5 +1,9 @@
 package quickSort.algo;
 
+import java.util.Arrays;
+
+import quickSort.Util;
+
 public class Hoare {
 
     /**
@@ -10,7 +14,24 @@ public class Hoare {
      * @param hi High
      */
     private static int partition(Integer[] arr, int lo, int hi) {
-        return 0;
+        int p = arr[lo];
+
+        int i = lo - 1;
+        int j = hi;
+
+        while (true) {
+            Util.devLog("Arr (dev): " + Arrays.asList(arr) + ", i: " + i + ", j: " + j + ", p: " + p);
+            do {
+                i = i + 1;
+            } while (arr[i] < p);
+            do {
+                j = j - 1;
+            } while (arr[j] > p);
+            if (i >= j) {
+                return j;
+            }
+            Util.swap(arr, i, j);
+        }
     }
     
     /**
@@ -20,7 +41,7 @@ public class Hoare {
      * @param lo Low
      * @param hi High
      */
-    protected static void quickSort(Integer[] arr, int lo, int hi) {
+    protected static void sort(Integer[] arr, int lo, int hi) {
         
         // Smallest sub
         if (lo < 0 || hi < 0 || lo >= hi) {
@@ -29,7 +50,7 @@ public class Hoare {
 
         int splitPoint = partition(arr, lo, hi);
 
-        quickSort(arr, lo, splitPoint);
-        quickSort(arr, splitPoint + 1, hi);
+        sort(arr, lo, splitPoint);
+        sort(arr, splitPoint + 1, hi);
     }
 }

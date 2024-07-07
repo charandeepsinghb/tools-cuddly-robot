@@ -65,7 +65,7 @@ public class Lomuto {
      * @param lo Low
      * @param hi High
      */
-    protected static void quickSort(Integer[] arr, int lo, int hi) {
+    protected static void sort(Integer[] arr, int lo, int hi) {
         
         // Smallest sub
         if (lo >= hi || lo < 0) {
@@ -74,7 +74,7 @@ public class Lomuto {
 
         int splitPoint = partition(arr, lo, hi);
 
-        quickSort(arr, lo, splitPoint - 1);
-        quickSort(arr, splitPoint + 1, hi);
+        sort(arr, lo, splitPoint - 1);
+        sort(arr, splitPoint + 1, hi);
     }
 }
