@@ -72,6 +72,8 @@
 
 <div id="job-list"></div>
 
+<div id="sdfsdfsd"></div>
+
 <script>
     document.addEventListener("DOMContentLoaded", async function () {
         const jobListContainer = document.getElementById("job-list"); // The section where jobs will be displayed
@@ -122,6 +124,30 @@
             jobListContainer.innerHTML = "<p>Failed to load job listings.</p>";
         }
     });
+
+
+    fetch("https://preprod.clayhr.com/rm/api/user/?userID=152804", {
+  method: "GET",
+  headers: {
+    "x-api-key": "6Y2TSNDBFY93DPER2R8T",
+    "userid": "152804"
+  }
+})
+  .then(response => {
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    return response.json(); // Automatically parses JSON
+  })
+  .then(data => {
+    document.document.getElementById("sdfsdfsd").innerText = JSON.stringify(data);
+  })
+  .catch(error => {
+    console.error("Fetch error:", error);
+      
+    document.document.getElementById("sdfsdfsd").innerText = error;
+  });
+
 </script>
 </body>
 </html>
