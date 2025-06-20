@@ -77,7 +77,7 @@
 <script>
     document.addEventListener("DOMContentLoaded", async function () {
         const jobListContainer = document.getElementById("job-list"); // The section where jobs will be displayed
-        const domain = "preprod.clayhr.com"; // Replace with your ClayHR domain
+        const domain = "wyomingsc.clayhr.com"; // Replace with your ClayHR domain
 
 
         try {
@@ -126,27 +126,6 @@
     });
 
 
-    fetch("https://preprod.clayhr.com/rm/api/user/?userID=152804", {
-  method: "GET",
-  headers: {
-    "x-api-key": "6Y2TSNDBFY93DPER2R8T",
-    "userid": "152804"
-  }
-})
-  .then(response => {
-    if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
-    }
-    return response.json(); // Automatically parses JSON
-  })
-  .then(data => {
-    document.document.getElementById("sdfsdfsd").innerText = JSON.stringify(data);
-  })
-  .catch(error => {
-    console.error("Fetch error:", error);
-      
-    document.document.getElementById("sdfsdfsd").innerText = error;
-  });
 
 </script>
 </body>
