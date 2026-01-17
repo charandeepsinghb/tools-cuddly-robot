@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Todos</title>
+  <style>
+    :root {
+      --primary-font: sans-serif;
+    }
+  </style>
+  <style>
+    /* Best practice css */
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+    }
+
+    p,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      overflow-wrap: break-word;
+    }
+
+    input,
+    button,
+    textarea,
+    select {
+      font: inherit;
+    }
+
+    /* Best practice css */
+
+    /* Utils */
+
+    .bdr {
+      border: 1px solid #00000068;
+    }
+
+    .br-5 {
+      border-radius: 5px;
+    }
+
+    .pr-fnt {
+      font-family: var(--primary-font);
+    }
+
+    .df {
+      display: flex;
+    }
+
+    .jsb {
+      justify-content: space-between;
+    }
+
+    .aic {
+      align-items: center;
+    }
+
+    .sf {
+      font-size: small;
+    }
+    .red {
+      color: red;
+    }
+    .ptr {
+      cursor: pointer;
+    }
+
+    /* Utils */
+
+    body {
+      margin: 20px;
+      font-family: var(--primary-font);
+    }
+
+    .td-itm {
+      padding: 5px;
+      margin-bottom: 15px;
+    }
+
+    .tds-c-con {
+      margin: 0 auto;
+      max-width: 300px;
+    }
+
+    .tds-inp {
+      width: 100%;
+      padding: 5px;
+      margin-bottom: 15px;
+    }
+
+    .td-ttl {
+      margin-bottom: 5px;
+    }
+    .tdt {
+      margin-right: 5px;
+      overflow-wrap: anywhere;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="tds-c-con">
+    <div class="td-ttl">Todos</div>
+
+    <div><input id="td-inp" class="tds-inp br-5 bdr pr-fnt" type="text"></div>
+    <div id="tds-con"></div>
+  </div>
+
+  <script>
+    const tdsCon = document.getElementById("tds-con");
+    const tdInp = document.getElementById("td-inp");
+
+    let tds;
+
+    function tdiForRender({text, uuid}) {
+      const tdi = document.createElement("div");
+      tdi.className = "td-itm br-5 bdr df jsb aic";
+      const tdt = document.createElement("div");
+      tdt.className = "tdt";
+      tdt.textContent = text;
+
+      const tdd = document.createElement("div");
+      tdd.className = "sf red ptr";
+      tdd.textContent = "Delete";
+
+      tdd.addEventListener("click", () => {
+        deletetd(uuid);
+      });
+
+      tdi.appendChild(tdt);
+      tdi.appendChild(tdd);
+
+      return tdi;
+    }
+
+    function renderTds() {
+      const frag = document.createDocumentFragment();
+
+      const tdsLen = tds.length;
+      for (let tdind = 0; tdind < tdsLen; tdind++) {
+        const tdi = tdiForRender(tds[tdind]);
+
+        frag.appendChild(tdi);
+      }
+
+      tdsCon.replaceChildren(frag);
+    }
+
+    function loadTodos() {
+      const tdsl = localStorage.getItem("todos-v1");
+      tds = tdsl ? JSON.parse(tdsl) : [];
+    }
+
+    loadTodos();
+
+    renderTds();
+
+    function saveTd() {
+      localStorage.setItem("todos-v1", JSON.stringify(tds));
+    }
+
+    function addTd(txt) {
+      const uuid = crypto ? crypto.randomUUID() : Date.now().toString();
+      tds.push({ text: txt, uuid: crypto.randomUUID() });
+      saveTd();
+      renderTds();
+    }
+
+    function addTdListn() {
+      tdInp.addEventListener("keyup", (e) => {
+        const val = e.target.value;
+        if (e.key !== "Enter" || !val) {
+          return;
+        };
+        addTd(val);
+        e.target.value = "";
+      });
+    }
+
+    addTdListn();
+
+    function deletetd(uuid) {
+      tds = tds.filter(it => it.uuid !== uuid);
+      saveTd();
+      renderTds();
+    }
+
+  </script>
+</body>
+
+</html>
