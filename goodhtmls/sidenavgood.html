@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <style>
+    body {
+      margin: 0;
+    }
+
+    :root {
+      --menu-back: #a6c4ff;
+      --icons: #7777af;
+      --icons-hover: #5959c0;
+      --logo: #ef7373;
+    }
+    
+    .top-menu {
+      height: 40px;
+      display: flex;
+      align-items: center;
+      background-color: var(--menu-back);
+      padding: 5px;
+    }
+    .top-menu > .company > .logo {
+      margin-right: 5px;
+      margin-top: 3px;
+    }
+    .top-menu > .company {
+      background-color: var(--logo);
+      /* color: white; */
+      padding: 5px;
+      
+      display: flex;
+      align-items: center;
+      border-radius: 5px;
+    }
+    .top-menu > .top-nav-icons  {
+      margin-left: 10px;
+    }
+    .app-with-side {
+      display: flex;
+    }
+    .side-nav {
+      width: 40px;
+      background-color: var(--menu-back);
+      padding: 5px;
+      min-height: calc(100vh - 60px);
+    }
+    .main-content {
+      width: 100%;
+    }
+    .side-nav-icon:hover {
+      background-color: var(--icons-hover);
+    }
+    .side-nav-icon {
+      background-color: var(--icons);
+      height: 30px;
+      width: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      margin-bottom: 10px;
+      border-radius: 5px;
+      padding: 5px;
+    }
+    .side-nav-icon > svg {
+      color: white;
+    }
+    .top-nav-icons {
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+    }
+    .search > input {
+      height: 30px;
+      border: none;
+      border-radius: 5px;
+      margin-right: 5px;
+      padding-left: 10px;
+    }
+
+    .me {
+      position: relative;
+    }
+    .meco {
+      display: none;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 200px;
+      height: 40px;
+      /* background-color: blue; */
+    }
+    .me:hover .meco {
+      display: block;
+    }
+    .meco:hover .mecoco {
+      display: block;
+    }
+    .mecoco {
+      display: none;
+      margin-left: 50px;
+      background-color: #7777af;
+      padding: 5px;
+      margin-top: -5px;
+    }
+    .mecoitm {
+      margin-bottom: 5px;
+      height: 40px;
+      background-color: rgb(229, 222, 185);
+      /* margin-bottom: 5px; */
+    }
+    .mecoitm:last-child {
+      margin-bottom: 0;
+    }
+    .mef1 {
+      margin-top: 5px;
+    }
+    .mectitl {
+      color: white;
+    }
+  </style>
+
+</head>
+<body>
+  <div id="root">
+    <div class="top-menu">
+      <div class="company">
+        <div class="logo">
+          <i data-lucide="monitor"></i>
+        </div>
+        <div>
+          ClayHR
+        </div>
+      </div>
+      <div class="top-nav-icons">
+        <div></div>
+        <div class="search">
+          <input type="text" name="" id="" placeholder="Search">
+        </div>
+      </div>
+    </div>
+    <div class="app-with-side">
+      <div class="side-nav">
+        <span class="side-nav-icon me mef1">
+          <i data-lucide="menu"></i>
+          <div class="meco">
+            <div class="mecoco">
+              <div class="mectitl">User</div>
+              <div class="mecoitm"></div>
+              <div class="mecoitm"></div>
+              <div class="mecoitm"></div>
+              <div class="mecoitm"></div>
+            </div>
+          </div>
+        </span>
+        <span class="side-nav-icon me">
+          <i data-lucide="volume-2"></i>
+          <div class="meco">
+            <div class="mecoco">
+              <div class="mectitl">User</div>
+              <div class="mecoitm"></div>
+              <div class="mecoitm"></div>
+              <div class="mecoitm"></div>
+              <div class="mecoitm"></div>
+            </div>
+          </div>
+        </span>
+        <span class="side-nav-icon me">
+          <i data-lucide="x"></i>
+          <div class="meco">
+            <div class="mecoco">
+              <div class="mectitl">User</div>
+              <div class="mecoitm"></div>
+              <div class="mecoitm"></div>
+              <div class="mecoitm"></div>
+              <div class="mecoitm"></div>
+            </div>
+          </div>
+        </span>
+        <span class="side-nav-icon me">
+          <i data-lucide="user"></i>
+          <div class="meco">
+            <div class="mecoco">
+              <div class="mectitl">User</div>
+              <div class="mecoitm"></div>
+              <div class="mecoitm"></div>
+              <div class="mecoitm"></div>
+              <div class="mecoitm"></div>
+            </div>
+          </div>
+        </span>
+      </div>
+      <div class="main-content"></div>
+    </div>
+  </div>
+
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
+</html>
