@@ -12,9 +12,11 @@
 
     :root {
       --menu-back: #a6c4ff;
+      --menu-item: #4a7ada;
+      --menu-item-hover: #235ed5;
       --icons: #7777af;
       --icons-hover: #5959c0;
-      --logo: #ef7373;
+      --logo: #c89ffd;
     }
     
     .top-menu {
@@ -104,15 +106,21 @@
     .mecoco {
       display: none;
       margin-left: 50px;
-      background-color: #7777af;
+      background-color: var(--menu-back);
       padding: 5px;
       margin-top: -5px;
+      border-radius: 5px;
     }
     .mecoitm {
       margin-bottom: 5px;
       height: 40px;
-      background-color: rgb(229, 222, 185);
-      /* margin-bottom: 5px; */
+      background-color: var(--menu-item);
+      border-radius: 5px;
+      transition: background-color 300ms ease-out;
+      display: flex;
+      align-items: center;
+      padding-left: 5px;
+      color: white;
     }
     .mecoitm:last-child {
       margin-bottom: 0;
@@ -123,6 +131,16 @@
     .mectitl {
       color: white;
     }
+    .content-corner > #top-right-rounded-corner {
+      width: 100px;
+      height: 100px;
+      background: var(--menu-back);
+      clip-path: path("M 0 0 L 10 0 C 10 0 1.8 0 0 10 Z");
+    }
+    .mecoitm:hover {
+      background-color: var(--menu-item-hover);
+    }
+
   </style>
 
 </head>
@@ -151,10 +169,10 @@
           <div class="meco">
             <div class="mecoco">
               <div class="mectitl">User</div>
-              <div class="mecoitm"></div>
-              <div class="mecoitm"></div>
-              <div class="mecoitm"></div>
-              <div class="mecoitm"></div>
+              <div class="mecoitm">Item</div>
+              <div class="mecoitm">Item</div>
+              <div class="mecoitm">Item</div>
+              <div class="mecoitm">Item</div>
             </div>
           </div>
         </span>
@@ -163,10 +181,10 @@
           <div class="meco">
             <div class="mecoco">
               <div class="mectitl">User</div>
-              <div class="mecoitm"></div>
-              <div class="mecoitm"></div>
-              <div class="mecoitm"></div>
-              <div class="mecoitm"></div>
+              <div class="mecoitm">Item</div>
+              <div class="mecoitm">Item</div>
+              <div class="mecoitm">Item</div>
+              <div class="mecoitm">Item</div>
             </div>
           </div>
         </span>
@@ -175,10 +193,10 @@
           <div class="meco">
             <div class="mecoco">
               <div class="mectitl">User</div>
-              <div class="mecoitm"></div>
-              <div class="mecoitm"></div>
-              <div class="mecoitm"></div>
-              <div class="mecoitm"></div>
+              <div class="mecoitm">Item</div>
+              <div class="mecoitm">Item</div>
+              <div class="mecoitm">Item</div>
+              <div class="mecoitm">Item</div>
             </div>
           </div>
         </span>
@@ -187,15 +205,18 @@
           <div class="meco">
             <div class="mecoco">
               <div class="mectitl">User</div>
-              <div class="mecoitm"></div>
-              <div class="mecoitm"></div>
-              <div class="mecoitm"></div>
-              <div class="mecoitm"></div>
+              <div class="mecoitm">Item</div>
+              <div class="mecoitm">Item</div>
+              <div class="mecoitm">Item</div>
+              <div class="mecoitm">Item</div>
             </div>
           </div>
         </span>
       </div>
-      <div class="main-content"></div>
+      <div class="main-content">
+        <div class="content-corner">
+          <div id="top-right-rounded-corner"></div>
+        </div>
     </div>
   </div>
 
